@@ -1,10 +1,21 @@
 // Import Brewery, this is our model
 const Brewery = require("../models/Brewery");
 
-const showAll = (req, res) => {
+const showBreweries = (req, res) => {
+
   try {
-    const breweries = Brewery.showAll();
-    res.send(breweries);
+    if (req.query) {
+      const query = req.query;
+      const queryName = Object.keys(query)[0];
+      const queryValue = Object.values(query)[0];
+
+      const breweries = Brewery.handleQuery(queryName, queryValue);
+      res.send(breweries);
+    } else {
+      const breweries = Brewery.showBreweries();
+      res.send(breweries);
+    }
+
   } catch (err) {
     res.status(500).send({error: "Something went wrong on our side"});
   }
@@ -30,4 +41,14 @@ const showIndex = (req, res) => {
   }
 }
 
-module.exports = {showAll, showIndex, showRandom}
+// const showCity = (req, res) => {
+//   const city = req.query.by_city;
+//   try {
+//     const breweries = Brewery.showCity(city);
+//     res.send(breweries);
+//   } catch (err) {
+//     res.status(500).send({error: "City not found"});
+//   }
+// }
+
+module.exports = {showBreweries, showIndex, showRandom}

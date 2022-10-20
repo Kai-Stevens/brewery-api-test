@@ -23,7 +23,7 @@ class Brewery {
   }
 
   // static shows that this function applies to the overall class
-  static showAll() {
+  static showBreweries() {
     return breweries.map((b, i) => new Brewery(b, i));
   }
 
@@ -44,14 +44,10 @@ class Brewery {
     return `Welcome to our brewery API, there are ${length} breweries currently available`;
   }
 
-//   updateBrewery(newText, newAuthor) {
-//     this.text = newText;
-//     this.author = newAuthor;
-//   }
-
-//   static deleteBrewery(idx) {
-//     breweries.splice(idx, 1);
-//   }
+  static handleQuery(queryName, queryValue) {
+    const filtered = breweries.filter(brewery => brewery[`${queryName}`] == queryValue)
+    return filtered.map((b, i) => new Brewery(b, i));
+  }
 }
 
 module.exports = Brewery;

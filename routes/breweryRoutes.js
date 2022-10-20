@@ -5,7 +5,7 @@ const router = express.Router();
 const brewery = require("../controllers/breweryController");
 
 // Basic GETS
-router.get('/', brewery.showAll);
+router.get('/', brewery.showBreweries);
 
 router.get('/random', brewery.showRandom);
 
