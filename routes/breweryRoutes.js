@@ -9,6 +9,8 @@ router.get('/', brewery.showBreweries);
 
 router.get('/random', brewery.showRandom);
 
+router.get('/search', brewery.searchBreweries);
+
 router.get('/:id', brewery.showIndex);
 
 // Advanced GETS

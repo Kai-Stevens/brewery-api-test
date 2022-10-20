@@ -41,6 +41,17 @@ const showIndex = (req, res) => {
   }
 }
 
+const searchBreweries = (req, res) => {
+  const searchValue = req.query.query;
+
+  try {
+    const brewery = Brewery.searchBreweries(searchValue);
+    res.send(brewery);
+  } catch (error) {
+    res.status(500).send({err: "Search not found"});
+  }
+}
+
 // const showCity = (req, res) => {
 //   const city = req.query.by_city;
 //   try {
@@ -51,4 +62,4 @@ const showIndex = (req, res) => {
 //   }
 // }
 
-module.exports = {showBreweries, showIndex, showRandom}
+module.exports = {showBreweries, showIndex, showRandom, searchBreweries}

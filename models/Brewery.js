@@ -48,6 +48,18 @@ class Brewery {
     const filtered = breweries.filter(brewery => brewery[`${queryName}`] == queryValue)
     return filtered.map((b, i) => new Brewery(b, i));
   }
+
+  static searchBreweries(searchValue) {
+    const filtered = breweries.filter(brewery => {
+      const valueArray = Object.values(brewery)
+      const searchResult = valueArray.filter(value => value != null ? value.includes(searchValue) : null)
+
+      if (searchResult.length != 0 ) {
+        return brewery;
+      }
+    });
+    return filtered.map((b, i) => new Brewery(b, i));
+  }
 }
 
 module.exports = Brewery;
